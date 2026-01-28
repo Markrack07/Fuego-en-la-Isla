@@ -1,0 +1,172 @@
+/* ================================
+   General
+================================= */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+  color: #333;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ff4500;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* ================================
+   Login Screen
+================================= */
+#login-screen input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  width: 200px;
+}
+
+#login-screen button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff4500;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#login-screen button:hover {
+  background-color: #ff6347;
+}
+
+/* ================================
+   Chapter Section
+================================= */
+#chapter-section {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 700px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ================================
+   Votes Section
+================================= */
+.vote-buttons button {
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff7f50;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.vote-buttons button:hover {
+  background-color: #ff6347;
+}
+
+/* ================================
+   Comments Section
+================================= */
+#comments-section {
+  max-width: 700px;
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.comments-list {
+  max-height: 200px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.comment-input {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.comment-input button {
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff4500;
+  color: white;
+  cursor: pointer;
+}
+
+.comment-input button:hover {
+  background-color: #ff6347;
+}
+
+/* ================================
+   Responsive
+================================= */
+@media (max-width: 768px) {
+  #chapter-section, #comments-section {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .vote-buttons button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .comment-input {
+    flex-direction: column;
+  }
+
+  .comment-input input {
+    width: 100%;
+  }
+
+  .comment-input button {
+    width: 100%;
+  }
+}
