@@ -2,108 +2,88 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>Fuego en la Isla</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fuego en la Isla 🔥</title>
-
-  <!-- Fuente moderna -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <!-- Fondo animado 3D -->
-  <canvas id="bg-canvas"></canvas>
+<body class="fire">
 
-  <!-- Sidebar -->
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2>Temporadas</h2>
-    <div class="seasons">
-      <div class="season">
-        <h3>Temporada Enero</h3>
-        <ul>
-          <li><a href="#" data-day="1">Día 1</a></li>
-          <li><a href="#" data-day="2">Día 2</a></li>
-          <li><a href="#" data-day="3">Día 3</a></li>
-        </ul>
-      </div>
-      <div class="season">
-        <h3>Temporada Febrero</h3>
-        <ul>
-          <li><a href="#" data-day="4">Día 4</a></li>
-          <li><a href="#" data-day="5">Día 5</a></li>
-        </ul>
-      </div>
+    <h2>🔥 Fuego en la Isla</h2>
+
+    <div class="season">
+      <div class="season-title">Temporada Marzo</div>
+      <div class="day">Día 1</div>
+      <div class="day">Día 2</div>
+      <div class="day">Día 3</div>
+      <div class="day">Día 4</div>
+    </div>
+
+    <div class="season">
+      <div class="season-title">Temporada Abril</div>
+      <div class="day">Día 5</div>
+      <div class="day">Día 6</div>
     </div>
   </aside>
 
-  <!-- Contenido principal -->
-  <main class="main-content">
+  <!-- MAIN -->
+  <main class="main">
 
-    <!-- =========================
-         Pantalla de Login / Registro
-    ========================= -->
-    <div id="login-screen" class="screen">
-      <h1>🔥 Fuego en la Isla 🔥</h1>
-      <div class="login-form">
-        <input type="email" id="email" placeholder="Correo electrónico">
-        <input type="password" id="password" placeholder="Contraseña">
-        <input type="text" id="nickname" placeholder="Nickname (nuevo usuario)">
-        <div class="login-buttons">
-          <button id="signup-btn">Registrarse</button>
-          <button id="login-btn">Iniciar sesión</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- =========================
-         Pantalla del Juego
-    ========================= -->
-    <div id="game-screen" class="screen" style="display:none;">
-
-      <!-- Menú de navegación interno -->
-      <nav class="menu">
-        <ul>
-          <li><a href="#chapter-section">Capítulo</a></li>
-          <li><a href="#votes-section">Votación</a></li>
-          <li><a href="#comments-section">Comentarios</a></li>
-        </ul>
+    <!-- HEADER -->
+    <header>
+      <h1>Fuego en la Isla</h1>
+      <nav>
+        <a href="ranking.html">🏆 Ranking</a>
+        <a href="login.html">👤 Cuenta</a>
+        <button id="modeBtn">🔥 Modo Fuego</button>
       </nav>
+    </header>
 
-      <!-- Día y Capítulo -->
-      <section id="chapter-section" class="card">
-        <h2 id="day-title">Día 1</h2>
-        <p id="chapter-text">Aquí aparecerá el capítulo del día.</p>
-      </section>
+    <!-- CAPÍTULO -->
+    <section class="chapter fade-in">
+      <h3>Día anterior</h3>
+      <p id="chapterText">
+        Ayer fue una noche intensa en la isla. Las miradas, las decisiones
+        y las tensiones marcaron el rumbo de lo que está por venir…
+      </p>
+    </section>
 
-      <!-- Votación -->
-      <section id="votes-section" class="card">
-        <h3>Votación del día</h3>
-        <div class="vote-buttons">
-          <button data-choice="1">Opción 1</button>
-          <button data-choice="2">Opción 2</button>
-          <button data-choice="3">Opción 3</button>
-        </div>
-      </section>
+    <!-- VOTACIONES -->
+    <section class="votes">
+      <button class="vote-btn">❤️ Romance inesperado</button>
+      <button class="vote-btn">💥 Discusión pública</button>
+      <button class="vote-btn">🆕 Nuevo participante</button>
+    </section>
 
-      <!-- Comentarios -->
-      <section id="comments-section" class="card">
-        <h3>Comentarios</h3>
-        <div id="comments" class="comments-list"></div>
-        <div class="comment-input">
-          <input type="text" id="comment-input" placeholder="Escribe tu comentario">
-          <button id="send-comment">Enviar</button>
-        </div>
-      </section>
-    </div>
+    <!-- COMENTARIOS -->
+    <section class="comments">
+      <h3>💬 Comentarios del día</h3>
+
+      <div class="comment">
+        <span>Laura 🔥</span>
+        <p>Esto va a explotar esta noche 😳</p>
+      </div>
+
+      <div class="comment">
+        <span>Mario 👁️</span>
+        <p>No me esperaba para nada ese giro.</p>
+      </div>
+
+      <textarea placeholder="Escribe tu comentario..."></textarea>
+      <button class="send">Enviar</button>
+    </section>
 
   </main>
 
-  <!-- Script principal -->
-  <script type="module" src="script.js"></script>
-  <!-- Script para fondo 3D -->
-  <script src="background3d.js" type="module"></script>
+  <!-- SCRIPTS (ORDEN IMPORTANTE) -->
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="main.js"></script>
+  <script type="module" src="votes.js"></script>
+  <script type="module" src="comments.js"></script>
+  <script type="module" src="modes.js"></script>
 
 </body>
 </html>
