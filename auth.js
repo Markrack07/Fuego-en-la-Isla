@@ -2,13 +2,20 @@ import { auth, db } from "./firebase-config.js";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
-// REDIRECCIONAR SI YA ESTÁ LOGUEADO
+// Redirige al login si no hay usuario
 onAuthStateChanged(auth, user => {
-  if (!user && window.location.pathname.endsWith("index.html")) {
-    window.location.href = "login.html";
-  }
-  if (user && window.location.pathname.endsWith("login.html")) {
-    window.location.href = "index.html";
+  const path = window.location.pathname;
+
+  if (!user) {
+    // Si no está logueado y NO estamos ya en login.html → redirigir
+    if (!path.endsWith("login.html")) {
+      window.location.href = "login.html";
+    }
+  } else {
+    // Si está logueado y estamos en login.html → redirigir a index
+    if (path.endsWith("login.html")) {
+      window.location.href = "index.html";
+    }
   }
 });
 
