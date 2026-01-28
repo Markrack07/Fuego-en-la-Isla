@@ -18,4 +18,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-export { auth, db };
+// Inicializar AI Logic
+const ai = getAI(app, { backend: new GoogleAIBackend() });
+
+// Crear modelo generativo (puedes cambiar el modelo si quieres)
+const generativeModel = getGenerativeModel(ai, { model: "gemini-2.5-flash" });
+
+// Exportar todo para usarlo en script.js
+export { auth, db, generativeModel };
