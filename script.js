@@ -1,7 +1,10 @@
-import { auth, db } from './firebase-config.js';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { auth, db, generativeModel } from './firebase-config.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
+/* =========================
+   ELEMENTOS DEL DOM
+========================= */
 const loginScreen = document.getElementById('login-screen');
 const gameScreen = document.getElementById('game-screen');
 
@@ -21,12 +24,15 @@ const sendCommentBtn = document.getElementById('send-comment');
 
 const voteButtons = document.querySelectorAll('.vote-buttons button');
 
+/* =========================
+   VARIABLES
+========================= */
 let currentUser = null;
 let currentDayNumber = 1;
 
-// =====================
-// Registro
-// =====================
+/* =========================
+   LOGIN / REGISTRO
+========================= */
 signupBtn.addEventListener('click', async () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
@@ -37,21 +43,14 @@ signupBtn.addEventListener('click', async () => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     currentUser = userCredential.user;
 
+    // Guardar nickname en la DB
     await set(ref(db, `users/${currentUser.uid}`), { nickname, email });
 
-    loginScreen.style.display = 'none';
-    gameScreen.style.display = 'flex';
-
-    loadChapter();
-    loadCommentsRealtime();
   } catch (error) {
-    alert("Error en registro: " + error.message);
+    return alert("Error en registro: " + error.message);
   }
 });
 
-// =====================
-// Login
-// =====================
 loginBtn.addEventListener('click', async () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
@@ -61,31 +60,78 @@ loginBtn.addEventListener('click', async () => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     currentUser = userCredential.user;
 
+  } catch (error) {
+    return alert("Error al iniciar sesión: " + error.message);
+  }
+});
+
+/* =========================
+   DETECTAR ESTADO DE AUTENTICACIÓN
+========================= */
+onAuthStateChanged(auth, user => {
+  if (user) {
+    currentUser = user;
     loginScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
 
     loadChapter();
     loadCommentsRealtime();
-  } catch (error) {
-    alert("Error al iniciar sesión: " + error.message);
+    loadVotesRealtime();
+  } else {
+    loginScreen.style.display = 'flex';
+    gameScreen.style.display = 'none';
   }
 });
 
-// =====================
-// Capítulo
-// =====================
-function loadChapter() {
+/* =========================
+   CAPÍTULO DEL DÍA
+========================= */
+async function loadChapter() {
   const chapterRef = ref(db, `days/${currentDayNumber}`);
-  onValue(chapterRef, (snapshot) => {
+  onValue(chapterRef, async (snapshot) => {
     const data = snapshot.val();
-    chapterText.textContent = data?.chapterText || "Aún no hay capítulo para hoy...";
+
+    if (!data?.chapterText) {
+      // Si no existe capítulo, generar con IA
+      const prompt = `
+Día ${currentDayNumber} en Fuego en la Isla.
+Genera un capítulo emocionante y coherente para la historia, considerando votaciones y comentarios anteriores.
+`;
+      const text = await generarCapitulo(prompt, currentDayNumber);
+      chapterText.textContent = text;
+    } else {
+      chapterText.textContent = data.chapterText;
+    }
+
     dayTitle.textContent = `Día ${currentDayNumber}`;
   });
 }
 
-// =====================
-// Comentarios
-// =====================
+/* =========================
+   FUNCION GENERAR CAPÍTULO IA
+========================= */
+async function generarCapitulo(promptTexto, dayNumber) {
+  try {
+    const result = await generativeModel.generateContent([{ text: promptTexto }]);
+    const text = result.response.text();
+
+    await set(ref(db, `days/${dayNumber}`), {
+      chapterText: text,
+      createdAt: Date.now()
+    });
+
+    console.log("Capítulo generado:", text);
+    return text;
+
+  } catch (error) {
+    console.error("Error generando capítulo:", error);
+    return "No se pudo generar el capítulo del día.";
+  }
+}
+
+/* =========================
+   COMENTARIOS
+========================= */
 function loadCommentsRealtime() {
   const commentsRef = ref(db, `days/${currentDayNumber}/comments`);
   onValue(commentsRef, (snapshot) => {
@@ -113,9 +159,17 @@ sendCommentBtn.addEventListener('click', async () => {
   commentInput.value = '';
 });
 
-// =====================
-// Votaciones
-// =====================
+/* =========================
+   VOTACIONES
+========================= */
+function loadVotesRealtime() {
+  const votesRef = ref(db, `days/${currentDayNumber}/votes`);
+  onValue(votesRef, (snapshot) => {
+    // Puedes mostrar resultados si quieres
+    console.log("Votos del día:", snapshot.val());
+  });
+}
+
 voteButtons.forEach(btn => {
   btn.addEventListener('click', async () => {
     const choice = parseInt(btn.getAttribute('data-choice'));
