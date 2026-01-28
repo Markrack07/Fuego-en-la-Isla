@@ -1,8 +1,6 @@
-import { 
-  auth, db, 
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, 
-  ref, set, onValue, push, child 
-} from './firebase-config.js';
+import { auth, db } from './firebase-config.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
 const loginScreen = document.getElementById('login-screen');
 const gameScreen = document.getElementById('game-screen');
@@ -39,11 +37,7 @@ signupBtn.addEventListener('click', async () => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     currentUser = userCredential.user;
 
-    // Guardar usuario en Realtime Database
-    await set(ref(db, 'users/' + currentUser.uid), {
-      nickname,
-      email
-    });
+    await set(ref(db, `users/${currentUser.uid}`), { nickname, email });
 
     loginScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
@@ -78,23 +72,19 @@ loginBtn.addEventListener('click', async () => {
 });
 
 // =====================
-// Cargar capítulo del día
+// Capítulo
 // =====================
 function loadChapter() {
   const chapterRef = ref(db, `days/${currentDayNumber}`);
   onValue(chapterRef, (snapshot) => {
     const data = snapshot.val();
-    if (data) {
-      dayTitle.textContent = `Día ${currentDayNumber}`;
-      chapterText.textContent = data.chapterText || "Aún no hay capítulo para hoy...";
-    } else {
-      chapterText.textContent = "Aún no hay capítulo para hoy...";
-    }
+    chapterText.textContent = data?.chapterText || "Aún no hay capítulo para hoy...";
+    dayTitle.textContent = `Día ${currentDayNumber}`;
   });
 }
 
 // =====================
-// Cargar comentarios en tiempo real
+// Comentarios
 // =====================
 function loadCommentsRealtime() {
   const commentsRef = ref(db, `days/${currentDayNumber}/comments`);
@@ -109,15 +99,11 @@ function loadCommentsRealtime() {
   });
 }
 
-// =====================
-// Enviar comentario
-// =====================
 sendCommentBtn.addEventListener('click', async () => {
   const text = commentInput.value.trim();
   if (!text) return;
 
-  const commentRef = ref(db, `days/${currentDayNumber}/comments`);
-  await push(commentRef, {
+  await push(ref(db, `days/${currentDayNumber}/comments`), {
     userId: currentUser.uid,
     nickname: nicknameInput.value.trim(),
     text,
@@ -133,10 +119,7 @@ sendCommentBtn.addEventListener('click', async () => {
 voteButtons.forEach(btn => {
   btn.addEventListener('click', async () => {
     const choice = parseInt(btn.getAttribute('data-choice'));
-
-    const voteRef = ref(db, `days/${currentDayNumber}/votes/${currentUser.uid}`);
-    await set(voteRef, choice);
-
+    await set(ref(db, `days/${currentDayNumber}/votes/${currentUser.uid}`), choice);
     alert("¡Voto registrado!");
   });
 });
