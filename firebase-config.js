@@ -4,7 +4,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth
 import { getDatabase } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
+  apiKey: "AIzaSyDGxLmQDmohUivV1XxIsLIWAvDATLRROgE",
   authDomain: "fuego-en-la-isla.firebaseapp.com",
   databaseURL: "https://fuego-en-la-isla-default-rtdb.firebaseio.com",
   projectId: "fuego-en-la-isla",
