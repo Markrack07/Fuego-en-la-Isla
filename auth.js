@@ -2,6 +2,17 @@ import { auth, db } from "./firebase-config.js";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const registerBtn = document.getElementById("registerBtn");
+
+// 🚨 Si no estamos en login.html, NO seguimos
+if (!emailInput || !passwordInput || !loginBtn || !registerBtn) {
+  console.warn("auth.js cargado fuera de login.html");
+  return;
+}
+
 // Redirige al login si no hay usuario
 onAuthStateChanged(auth, user => {
   const path = window.location.pathname;
