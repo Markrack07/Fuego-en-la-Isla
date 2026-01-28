@@ -1,172 +1,114 @@
 /* ---------------------------- */
-/*       RESET BÁSICO           */
+/*          RESET BÁSICO        */
 /* ---------------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
+  display: flex;
   min-height: 100vh;
+  background: #0f0c29;
   color: #fff;
-  background: linear-gradient(135deg, #3a0f0f, #7a1f1f, #ff6a00);
-  transition: background 0.5s ease;
+  transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
-}
-
-/* ---------------------------- */
-/*       MODOS FIRE / NIGHT     */
-/* ---------------------------- */
-body.fire {
-  background: linear-gradient(135deg, #3a0f0f, #7a1f1f, #ff6a00);
-}
-
-body.night {
-  background: linear-gradient(135deg, #0b132b, #1c2541, #3a86ff);
-}
-
-/* Animación de fondo 3D sutil */
-body::before {
-  content: "";
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
-  opacity: 0.05;
-  z-index: 0;
-  pointer-events: none;
-  animation: moveBG 40s linear infinite;
-}
-
-@keyframes moveBG {
-  0% {background-position:0 0;}
-  100% {background-position:500px 500px;}
 }
 
 /* ---------------------------- */
 /*           SIDEBAR            */
 /* ---------------------------- */
 .sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 220px;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(6px);
+  background: rgba(20, 20, 40, 0.95);
   padding: 20px;
   overflow-y: auto;
-  z-index: 10;
+  border-right: 2px solid #ffb703;
 }
 
 .sidebar h2 {
   margin-bottom: 20px;
-  text-align: center;
   color: #ffb703;
 }
 
 .season-title {
+  font-weight: bold;
   margin-top: 15px;
-  font-weight: 600;
+  margin-bottom: 5px;
   color: #ffd166;
 }
 
 .day {
-  padding: 6px 10px;
-  margin: 5px 0;
+  margin-left: 10px;
+  padding: 5px;
   cursor: pointer;
-  border-radius: 6px;
-  transition: 0.3s;
+  border-radius: 5px;
+  transition: all 0.2s ease;
 }
 
 .day:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 183, 3, 0.3);
 }
 
 /* ---------------------------- */
-/*            MAIN              */
+/*          MAIN CONTENT        */
 /* ---------------------------- */
-.main {
-  margin-left: 240px;
-  padding: 30px;
-  z-index: 1;
-  position: relative;
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-header nav a, header nav button {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: 0.3s;
-  background: rgba(0,0,0,0.3);
-  border: none;
-  cursor: pointer;
-}
-
-header nav a:hover, header nav button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 /* ---------------------------- */
-/*         CAPÍTULO             */
+/*           CAPÍTULO           */
 /* ---------------------------- */
 .chapter {
-  background: rgba(0,0,0,0.5);
+  background: rgba(255, 255, 255, 0.05);
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.chapter h3 {
-  color: #ffd166;
-  margin-bottom: 10px;
-}
-
-.chapter p {
-  line-height: 1.6;
-}
-
-/* Protagonistas destacados */
-.protagonist {
-  color: #ffb703;
-  font-weight: 700;
-  text-shadow: 0 0 8px rgba(255,183,3,0.6);
+  backdrop-filter: blur(5px);
 }
 
 /* ---------------------------- */
-/*         VOTACIONES           */
+/*           VOTACIONES         */
 /* ---------------------------- */
 .votes {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.vote-buttons {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .vote-btn {
   flex: 1 1 calc(33% - 10px);
   padding: 10px;
-  background: rgba(255,255,255,0.1);
-  border: none;
   border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-weight: bold;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .vote-btn:hover {
-  background: rgba(255,183,3,0.5);
+  background: rgba(255, 183, 3, 0.7);
   transform: scale(1.05);
 }
 
@@ -174,125 +116,64 @@ header nav a:hover, header nav button:hover {
 /*          COMENTARIOS         */
 /* ---------------------------- */
 .comments {
-  background: rgba(0,0,0,0.5);
+  background: rgba(255, 255, 255, 0.05);
   padding: 20px;
   border-radius: 10px;
 }
 
-.comments h3 {
-  margin-bottom: 15px;
-  color: #ffd166;
-}
-
-.comment {
-  padding: 10px;
-  margin-bottom: 10px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
-}
-
-.comment span {
-  font-weight: 700;
-  color: #ffb703;
-  margin-right: 5px;
-}
-
-textarea {
+.comments textarea {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
   resize: vertical;
-  min-height: 60px;
 }
 
 .send {
   margin-top: 10px;
-  padding: 8px 16px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
   background: #ffb703;
   color: #000;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .send:hover {
   background: #ffd166;
+  transform: scale(1.05);
 }
 
-/* ---------------------------- */
-/*           LOGIN / REGISTER   */
-/* ---------------------------- */
-input[type="text"], input[type="email"], input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: none;
+/* Comentarios dinámicos */
+.comment {
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 8px;
 }
 
-button {
-  cursor: pointer;
-}
-
-/* Toggle login/register */
-.toggleBtn {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  background: rgba(255,183,3,0.3);
-  color: #fff;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.toggleBtn:hover {
-  background: rgba(255,183,3,0.6);
+.comment span {
+  font-weight: bold;
+  color: #ffb703;
 }
 
 /* ---------------------------- */
 /*           RANKING            */
 /* ---------------------------- */
-#ranking {
-  background: rgba(0,0,0,0.5);
+.ranking {
+  background: rgba(255, 255, 255, 0.05);
   padding: 20px;
   border-radius: 10px;
 }
 
-#ranking div {
-  padding: 8px;
-  margin-bottom: 6px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.05);
-}
-
-/* ---------------------------- */
-/*           ACCOUNT            */
-/* ---------------------------- */
-#profile, #userComments, #userAppearances {
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-/* ---------------------------- */
-/*         ANIMACIONES          */
-/* ---------------------------- */
-.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.5s ease;
-}
-
-.fade-out {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
+.ranking div {
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ---------------------------- */
@@ -316,81 +197,60 @@ button:hover {
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-/* Botones de votación */
-.vote-btn {
-  flex: 1 1 calc(33% - 10px);
-  margin: 5px 0;
-  background: rgba(255,255,255,0.15);
-}
-
-.vote-btn:hover {
-  background: rgba(255,183,3,0.6);
-}
-
-/* Botón enviar comentario */
-.send {
-  background: #ffb703;
-  color: #000;
-}
-
-.send:hover {
-  background: #ffd166;
-  transform: scale(1.05);
-}
-
-/* Toggle login/register */
-.toggleBtn {
-  flex: 1;
-  background: rgba(255,183,3,0.3);
-  color: #fff;
-  margin: 0 5px;
-}
-
-.toggleBtn:hover {
-  background: rgba(255,183,3,0.6);
-  transform: scale(1.05);
-}
-
 /* Botón modo fuego / noche */
 #modeBtn {
   background: rgba(255,183,3,0.4);
   color: #fff;
 }
 
-#modeBtn:hover {
-  background: rgba(255,183,3,0.7);
-  transform: scale(1.05);
+/* ---------------------------- */
+/*      MODOS: FUEGO/NOCHE      */
+/* ---------------------------- */
+body.fire {
+  background: linear-gradient(120deg, #ff4e50, #f9d423);
 }
 
-/* Logout en account.html */
-#logoutBtn {
-  background: rgba(255,0,0,0.4);
-  color: #fff;
+body.night {
+  background: linear-gradient(120deg, #1a1a2e, #162447);
 }
-
-#logoutBtn:hover {
-  background: rgba(255,0,0,0.7);
-  transform: scale(1.05);
-}
-
 
 /* ---------------------------- */
-/*       RESPONSIVE             */
+/*        FONDO ANIMADO 3D       */
 /* ---------------------------- */
-@media (max-width: 768px) {
-  .main {
-    margin-left: 0;
-    padding: 20px;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://images.unsplash.com/photo-1583241002419-5b7a1ee0f379?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+  opacity: 0.15;
+  z-index: -1;
+  animation: moveBg 60s linear infinite;
+}
+
+@keyframes moveBg {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(50px,50px) scale(1.05); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+/* ---------------------------- */
+/*         RESPONSIVE           */
+/* ---------------------------- */
+@media (max-width: 900px) {
+  body {
+    flex-direction: column;
   }
 
   .sidebar {
-    position: relative;
     width: 100%;
-    height: auto;
-    padding: 10px;
+    display: flex;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 2px solid #ffb703;
   }
 
-  .votes {
-    flex-direction: column;
+  main {
+    padding: 10px;
   }
 }
