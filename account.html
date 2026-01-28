@@ -2,55 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Cuenta - Fuego en la Isla</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta - Fuego en la Isla</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="fire">
+  <main class="account-main">
+    <h1>💼 Mi Cuenta</h1>
 
-  <main class="main" style="max-width:800px; margin:50px auto;">
-
-    <!-- HEADER -->
-    <header>
-      <h1>👤 Mi Cuenta</h1>
-      <nav>
-        <a href="index.html">🏠 Inicio</a>
-        <a href="ranking.html">🏆 Ranking</a>
-        <button id="logoutBtn">Cerrar sesión</button>
-      </nav>
-    </header>
-
-    <!-- PERFIL -->
-    <section id="profile" style="margin-top:20px;">
-      <h3>Datos del usuario</h3>
-      <p><strong>Nickname:</strong> <span id="userNick">Cargando...</span></p>
-      <p><strong>Rol:</strong> <span id="userRole">Cargando...</span></p>
-      <p><strong>Puntos de influencia:</strong> <span id="userInfluence">0</span></p>
+    <section class="profile">
+      <p><strong>Nickname:</strong> <span id="userNickname">Cargando...</span></p>
+      <p><strong>Influencia:</strong> <span id="userInfluence">0</span></p>
+      <p><strong>Participa en la isla:</strong> <span id="userAppear">No</span></p>
     </section>
 
-    <!-- COMENTARIOS DEL USUARIO -->
-    <section id="userComments" style="margin-top:30px;">
-      <h3>💬 Tus comentarios</h3>
-      <div id="commentsList">
-        <p>Cargando comentarios...</p>
-      </div>
+    <section class="my-comments">
+      <h3>💬 Mis comentarios</h3>
+      <div id="myComments"></div>
     </section>
 
-    <!-- CAPÍTULOS DONDE APARECE -->
-    <section id="userAppearances" style="margin-top:30px;">
-      <h3>📖 Capítulos donde apareces</h3>
-      <div id="appearancesList">
-        <p>Cargando apariciones...</p>
-      </div>
-    </section>
-
+    <button id="logoutBtn">Cerrar sesión</button>
   </main>
 
-  <!-- SCRIPTS -->
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="auth.js"></script>
-  <script type="module" src="account.js"></script>
-
+  <script type="module" src="comments.js"></script>
+  <script type="module" src="ranking.js"></script>
 </body>
 </html>
