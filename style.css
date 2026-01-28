@@ -1,131 +1,138 @@
 /* ================================
-   General - Futurista
+   General
 ================================= */
 body {
-  font-family: 'Orbitron', sans-serif; /* tipografía futurista */
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* fondo oscuro degradado */
-  color: #00ffe0;
+  background-color: #f5f6fa;
+  color: #2f3640;
 }
 
 .screen {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   padding: 20px;
-  text-align: center;
-  text-shadow: 0 0 5px #00ffe0, 0 0 10px #00ffe0, 0 0 20px #00ffe0;
-}
-
-h1 {
-  font-size: 3rem;
-  color: #00ffe0;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
 }
 
 /* ================================
    Login Screen
 ================================= */
-#login-screen input {
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-form input {
   padding: 12px;
   font-size: 1rem;
+  border: 1px solid #dcdde1;
   border-radius: 8px;
-  border: 1px solid #00ffe0;
-  background: #1a1a2e;
-  color: #00ffe0;
-  margin-bottom: 15px;
-  width: 250px;
   outline: none;
-  box-shadow: 0 0 5px #00ffe0;
 }
 
-#login-screen input::placeholder {
-  color: #00ffe0aa;
+.login-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-#login-screen button {
-  padding: 12px 25px;
+.login-buttons button {
+  flex: 1;
+  padding: 12px;
   font-size: 1rem;
+  border: none;
   border-radius: 8px;
-  border: 1px solid #00ffe0;
-  background-color: #0d0d1a;
-  color: #00ffe0;
+  background-color: #00a8ff;
+  color: #fff;
   cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 0 10px #00ffe0;
+  transition: background 0.2s;
 }
 
-#login-screen button:hover {
-  background-color: #00ffe0;
-  color: #0d0d1a;
-  box-shadow: 0 0 20px #00ffe0;
+.login-buttons button:hover {
+  background-color: #0097e6;
 }
 
 /* ================================
-   Chapter Section
+   Menu de navegación
 ================================= */
-#chapter-section, #chapter-text {
-  background: rgba(0, 0, 0, 0.6);
+.menu {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dcdde1;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #00a8ff;
+  transition: color 0.2s;
+}
+
+.menu a:hover {
+  color: #0097e6;
+}
+
+/* ================================
+   Cards (capítulo, votos, comentarios)
+================================= */
+.card {
+  background-color: #fff;
   border-radius: 12px;
   padding: 20px;
-  max-width: 700px;
   margin-bottom: 20px;
-  box-shadow: 0 0 20px #00ffe0, 0 0 40px #00ffe0;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ================================
-   Votes Section
-================================= */
+.vote-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .vote-buttons button {
-  padding: 12px 20px;
-  margin: 5px;
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid #00ffe0;
-  background-color: #0d0d1a;
-  color: #00ffe0;
+  border: 1px solid #00a8ff;
+  background-color: #fff;
+  color: #00a8ff;
   cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 0 10px #00ffe0;
+  transition: all 0.2s;
 }
 
 .vote-buttons button:hover {
-  background-color: #00ffe0;
-  color: #0d0d1a;
-  box-shadow: 0 0 20px #00ffe0;
+  background-color: #00a8ff;
+  color: #fff;
 }
 
 /* ================================
-   Comments Section
+   Comentarios
 ================================= */
-#comments-section {
-  max-width: 700px;
-  width: 100%;
-  margin-top: 20px;
-  text-align: left;
-}
-
 .comments-list {
   max-height: 200px;
   overflow-y: auto;
-  background: rgba(0,0,0,0.6);
-  border-radius: 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 0 15px #00ffe0, 0 0 30px #00ffe0;
+  background-color: #f1f2f6;
 }
 
 .comment-input {
@@ -137,61 +144,36 @@ h3 {
   flex: 1;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #00ffe0;
-  background: #1a1a2e;
-  color: #00ffe0;
-  outline: none;
+  border: 1px solid #dcdde1;
 }
 
 .comment-input button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 8px;
-  border: 1px solid #00ffe0;
-  background-color: #0d0d1a;
-  color: #00ffe0;
+  border: none;
+  background-color: #00a8ff;
+  color: #fff;
   cursor: pointer;
-  box-shadow: 0 0 10px #00ffe0;
 }
 
 .comment-input button:hover {
-  background-color: #00ffe0;
-  color: #0d0d1a;
-  box-shadow: 0 0 20px #00ffe0;
-}
-
-/* ================================
-   Scrollbar futurista
-================================= */
-.comments-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.comments-list::-webkit-scrollbar-thumb {
-  background: #00ffe0;
-  border-radius: 10px;
+  background-color: #0097e6;
 }
 
 /* ================================
    Responsive
 ================================= */
 @media (max-width: 768px) {
-  #chapter-section, #comments-section {
-    padding: 15px;
-  }
-
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.6rem; }
-
-  .vote-buttons button {
-    width: 100%;
-    margin-bottom: 5px;
-  }
-
-  .comment-input {
+  .vote-buttons {
     flex-direction: column;
   }
 
-  .comment-input input, .comment-input button {
-    width: 100%;
+  .login-buttons {
+    flex-direction: column;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    gap: 10px;
   }
 }
