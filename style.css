@@ -5,8 +5,8 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f6fa;
-  color: #2f3640;
+  overflow-x: hidden;
+  display: flex;
 }
 
 .screen {
@@ -17,85 +17,68 @@ body {
 }
 
 /* ================================
-   Login Screen
+   Sidebar
 ================================= */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 350px;
+.sidebar {
+  width: 250px;
+  background-color: rgba(255,255,255,0.9);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
 }
 
-.login-form input {
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #dcdde1;
-  border-radius: 8px;
-  outline: none;
-}
-
-.login-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.login-buttons button {
-  flex: 1;
-  padding: 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #00a8ff;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.login-buttons button:hover {
-  background-color: #0097e6;
-}
-
-/* ================================
-   Menu de navegación
-================================= */
-.menu {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #dcdde1;
-}
-
-.menu ul {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-}
-
-.menu a {
-  text-decoration: none;
-  font-weight: 600;
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
   color: #00a8ff;
+}
+
+.sidebar h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #2f3640;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #2f3640;
+  display: block;
+  padding: 5px 0;
   transition: color 0.2s;
 }
 
-.menu a:hover {
-  color: #0097e6;
+.sidebar a:hover {
+  color: #00a8ff;
+  font-weight: 600;
 }
 
 /* ================================
-   Cards (capítulo, votos, comentarios)
+   Main content
+================================= */
+.main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  padding: 20px;
+}
+
+/* ================================
+   Cards
 ================================= */
 .card {
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.95);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
-  width: 100%;
-  max-width: 800px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
@@ -108,7 +91,6 @@ body {
 .vote-buttons button {
   flex: 1;
   padding: 10px;
-  font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #00a8ff;
   background-color: #fff;
@@ -161,19 +143,13 @@ body {
 }
 
 /* ================================
-   Responsive
+   Fondo animado 3D
 ================================= */
-@media (max-width: 768px) {
-  .vote-buttons {
-    flex-direction: column;
-  }
-
-  .login-buttons {
-    flex-direction: column;
-  }
-
-  .menu ul {
-    flex-direction: column;
-    gap: 10px;
-  }
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
