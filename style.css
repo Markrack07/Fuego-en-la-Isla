@@ -227,6 +227,19 @@ button.send {
   transition: all 0.4s ease;
 }
 
+.protagonist {
+  color: #ffb703;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255,183,3,0.6);
+}
+
+body.fire {
+  background: linear-gradient(135deg, #3a0f0f, #7a1f1f, #ff6a00);
+}
+
+body.night {
+  background: linear-gradient(135deg, #0b132b, #1c2541, #3a86ff);
+}
 
 /* =========================
    RESPONSIVE
