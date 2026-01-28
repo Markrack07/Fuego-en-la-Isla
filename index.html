@@ -1,50 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fuego en la Isla 🔥</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuego en la Isla 🔥</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 </head>
 <body>
-  <!-- Pantalla de inicio / login -->
-  <div id="login-screen" class="screen">
-    <h1>🔥 Fuego en la Isla 🔥</h1>
-    <p>Ingresa tu nickname para empezar a jugar</p>
-    <input type="text" id="nickname" placeholder="Tu nickname">
-    <button id="start-btn">Entrar</button>
+
+<!-- Pantalla de login -->
+<div id="login-screen" class="screen">
+  <h1>🔥 Fuego en la Isla 🔥</h1>
+  <input type="email" id="email" placeholder="Correo electrónico">
+  <input type="password" id="password" placeholder="Contraseña">
+  <input type="text" id="nickname" placeholder="Nickname (nuevo usuario)">
+  <button id="signup-btn">Registrarse</button>
+  <button id="login-btn">Iniciar sesión</button>
+</div>
+
+<!-- Pantalla del juego -->
+<div id="game-screen" class="screen" style="display:none;">
+  <h2 id="day-title">Día 1</h2>
+  <p id="chapter-text">Aquí aparecerá el capítulo del día.</p>
+
+  <h3>Votación del día</h3>
+  <div class="vote-buttons">
+    <button data-choice="1">Opción 1</button>
+    <button data-choice="2">Opción 2</button>
+    <button data-choice="3">Opción 3</button>
   </div>
 
-  <!-- Pantalla del juego -->
-  <div id="game-screen" class="screen" style="display:none;">
-    <header>
-      <h2 id="day-title">Día 1</h2>
-    </header>
-
-    <section id="chapter-section">
-      <p id="chapter-text">Aquí aparecerá el capítulo del día generado.</p>
-    </section>
-
-    <section id="votes-section">
-      <h3>Votación del día</h3>
-      <div class="vote-buttons">
-        <button data-choice="1">Opción 1</button>
-        <button data-choice="2">Opción 2</button>
-        <button data-choice="3">Opción 3</button>
-      </div>
-    </section>
-
-    <section id="comments-section">
-      <h3>Comentarios</h3>
-      <div id="comments" class="comments-list"></div>
-      <div class="comment-input">
-        <input type="text" id="comment-input" placeholder="Escribe tu comentario">
-        <button id="send-comment">Enviar</button>
-      </div>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <h3>Comentarios</h3>
+  <div id="comments" class="comments-list"></div>
+  <i
