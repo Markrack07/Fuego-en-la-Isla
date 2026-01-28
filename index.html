@@ -2,88 +2,65 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Fuego en la Isla</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Fuego en la Isla</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="fire">
-
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <h2>🔥 Fuego en la Isla</h2>
-
-    <div class="season">
-      <div class="season-title">Temporada Marzo</div>
-      <div class="day">Día 1</div>
-      <div class="day">Día 2</div>
-      <div class="day">Día 3</div>
-      <div class="day">Día 4</div>
-    </div>
-
-    <div class="season">
-      <div class="season-title">Temporada Abril</div>
-      <div class="day">Día 5</div>
-      <div class="day">Día 6</div>
-    </div>
+    <!-- Los días se cargarán dinámicamente -->
   </aside>
 
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- HEADER -->
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- CABECERA -->
     <header>
-      <h1>Fuego en la Isla</h1>
-      <nav>
-        <a href="ranking.html">🏆 Ranking</a>
-        <a href="account.html">👤 Cuenta</a>
-        <button id="modeBtn">🔥 Modo Fuego</button>
-      </nav>
+      <button id="modeBtn">🌙 Modo Noche</button>
+      <a href="account.html"><button>Cuenta</button></a>
     </header>
 
-    <!-- CAPÍTULO -->
-    <section class="chapter fade-in">
-      <h3>Día anterior</h3>
-      <p id="chapterText">
-        Ayer fue una noche intensa en la isla. Las miradas, las decisiones
-        y las tensiones marcaron el rumbo de lo que está por venir…
-      </p>
+    <!-- CAPÍTULO DEL DÍA -->
+    <section class="chapter">
+      <h2>📖 Capítulo del día</h2>
+      <p id="chapterText">Cargando capítulo...</p>
     </section>
 
     <!-- VOTACIONES -->
     <section class="votes">
-      <button class="vote-btn">❤️ Romance inesperado</button>
-      <button class="vote-btn">💥 Discusión pública</button>
-      <button class="vote-btn">🆕 Nuevo participante</button>
+      <h2>🗳️ Vota por la acción del día</h2>
+      <div class="vote-buttons">
+        <button class="vote-btn">Opción A</button>
+        <button class="vote-btn">Opción B</button>
+        <button class="vote-btn">Opción C</button>
+      </div>
     </section>
 
     <!-- COMENTARIOS -->
     <section class="comments">
       <h3>💬 Comentarios del día</h3>
-
-      <div class="comment">
-        <span>Laura 🔥</span>
-        <p>Esto va a explotar esta noche 😳</p>
-      </div>
-
-      <div class="comment">
-        <span>Mario 👁️</span>
-        <p>No me esperaba para nada ese giro.</p>
-      </div>
+      <!-- Contenedor dinámico para comentarios -->
+      <div id="commentsList"></div>
 
       <textarea placeholder="Escribe tu comentario..."></textarea>
       <button class="send">Enviar</button>
     </section>
 
+    <!-- RANKING -->
+    <section class="ranking">
+      <h3>🏆 Usuarios más influyentes</h3>
+      <div id="ranking"></div>
+    </section>
   </main>
 
-  <!-- SCRIPTS (ORDEN IMPORTANTE) -->
+  <!-- SCRIPTS -->
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="auth.js"></script>
   <script type="module" src="main.js"></script>
   <script type="module" src="votes.js"></script>
   <script type="module" src="comments.js"></script>
+  <script type="module" src="ranking.js"></script>
   <script type="module" src="modes.js"></script>
-
 </body>
 </html>
