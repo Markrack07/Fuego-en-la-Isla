@@ -1,12 +1,12 @@
 /* ================================
-   General
+   General - Futurista
 ================================= */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Orbitron', sans-serif; /* tipografía futurista */
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #ffecd2, #fcb69f);
-  color: #333;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* fondo oscuro degradado */
+  color: #00ffe0;
 }
 
 .screen {
@@ -17,12 +17,14 @@ body {
   min-height: 100vh;
   padding: 20px;
   text-align: center;
+  text-shadow: 0 0 5px #00ffe0, 0 0 10px #00ffe0, 0 0 20px #00ffe0;
 }
 
 h1 {
   font-size: 3rem;
-  color: #ff4500;
+  color: #00ffe0;
   margin-bottom: 10px;
+  text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
 }
 
 h2 {
@@ -39,57 +41,71 @@ h3 {
    Login Screen
 ================================= */
 #login-screen input {
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #00ffe0;
+  background: #1a1a2e;
+  color: #00ffe0;
   margin-bottom: 15px;
-  width: 200px;
+  width: 250px;
+  outline: none;
+  box-shadow: 0 0 5px #00ffe0;
+}
+
+#login-screen input::placeholder {
+  color: #00ffe0aa;
 }
 
 #login-screen button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   font-size: 1rem;
   border-radius: 8px;
-  border: none;
-  background-color: #ff4500;
-  color: white;
+  border: 1px solid #00ffe0;
+  background-color: #0d0d1a;
+  color: #00ffe0;
   cursor: pointer;
   transition: 0.2s;
+  box-shadow: 0 0 10px #00ffe0;
 }
 
 #login-screen button:hover {
-  background-color: #ff6347;
+  background-color: #00ffe0;
+  color: #0d0d1a;
+  box-shadow: 0 0 20px #00ffe0;
 }
 
 /* ================================
    Chapter Section
 ================================= */
-#chapter-section {
-  background: rgba(255, 255, 255, 0.8);
+#chapter-section, #chapter-text {
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 12px;
   padding: 20px;
   max-width: 700px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px #00ffe0, 0 0 40px #00ffe0;
 }
 
 /* ================================
    Votes Section
 ================================= */
 .vote-buttons button {
-  padding: 10px 15px;
+  padding: 12px 20px;
   margin: 5px;
   border-radius: 8px;
-  border: none;
-  background-color: #ff7f50;
-  color: white;
+  border: 1px solid #00ffe0;
+  background-color: #0d0d1a;
+  color: #00ffe0;
   cursor: pointer;
   transition: 0.2s;
+  box-shadow: 0 0 10px #00ffe0;
 }
 
 .vote-buttons button:hover {
-  background-color: #ff6347;
+  background-color: #00ffe0;
+  color: #0d0d1a;
+  box-shadow: 0 0 20px #00ffe0;
 }
 
 /* ================================
@@ -105,11 +121,11 @@ h3 {
 .comments-list {
   max-height: 200px;
   overflow-y: auto;
-  background: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.6);
   border-radius: 12px;
   padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px #00ffe0, 0 0 30px #00ffe0;
 }
 
 .comment-input {
@@ -119,22 +135,40 @@ h3 {
 
 .comment-input input {
   flex: 1;
-  padding: 8px;
+  padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #00ffe0;
+  background: #1a1a2e;
+  color: #00ffe0;
+  outline: none;
 }
 
 .comment-input button {
-  padding: 8px 15px;
+  padding: 10px 20px;
   border-radius: 8px;
-  border: none;
-  background-color: #ff4500;
-  color: white;
+  border: 1px solid #00ffe0;
+  background-color: #0d0d1a;
+  color: #00ffe0;
   cursor: pointer;
+  box-shadow: 0 0 10px #00ffe0;
 }
 
 .comment-input button:hover {
-  background-color: #ff6347;
+  background-color: #00ffe0;
+  color: #0d0d1a;
+  box-shadow: 0 0 20px #00ffe0;
+}
+
+/* ================================
+   Scrollbar futurista
+================================= */
+.comments-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  background: #00ffe0;
+  border-radius: 10px;
 }
 
 /* ================================
@@ -145,13 +179,8 @@ h3 {
     padding: 15px;
   }
 
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
 
   .vote-buttons button {
     width: 100%;
@@ -162,11 +191,7 @@ h3 {
     flex-direction: column;
   }
 
-  .comment-input input {
-    width: 100%;
-  }
-
-  .comment-input button {
+  .comment-input input, .comment-input button {
     width: 100%;
   }
 }
