@@ -203,6 +203,17 @@ button:hover {
   color: #fff;
 }
 
+/* Logout */
+#logoutBtn {
+  background: rgba(255,0,0,0.4);
+  color: #fff;
+}
+
+#logoutBtn:hover {
+  background: rgba(255,0,0,0.7);
+  transform: scale(1.05);
+}
+
 /* ---------------------------- */
 /*      MODOS: FUEGO/NOCHE      */
 /* ---------------------------- */
@@ -235,6 +246,74 @@ body::before {
 }
 
 /* ---------------------------- */
+/*           LOGIN/REGISTER      */
+/* ---------------------------- */
+.login-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.login-main h1 {
+  font-size: 2rem;
+  color: #ffb703;
+}
+
+.login-main section {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-main input[type="text"],
+.login-main input[type="email"],
+.login-main input[type="password"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.toggleBtn {
+  cursor: pointer;
+  color: #ffb703;
+  font-weight: bold;
+}
+
+/* ---------------------------- */
+/*           ACCOUNT            */
+/* ---------------------------- */
+.account-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.account-main section {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* ---------------------------- */
+/*         RANKING PAGE          */
+/* ---------------------------- */
+.ranking-main {
+  padding: 20px;
+}
+
+.ranking-main button {
+  margin-top: 20px;
+}
+
+/* ---------------------------- */
 /*         RESPONSIVE           */
 /* ---------------------------- */
 @media (max-width: 900px) {
@@ -252,5 +331,9 @@ body::before {
 
   main {
     padding: 10px;
+  }
+
+  .login-main section {
+    width: 90%;
   }
 }
