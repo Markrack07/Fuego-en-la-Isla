@@ -1,4 +1,4 @@
-import { auth, db, generativeModel } from './firebase-config.js';
+import { auth, db } from './firebase-config.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
@@ -102,12 +102,10 @@ async function loadChapter() {
     const data = snapshot.val();
 
     if (!data?.chapterText) {
-      // Si no existe capítulo, generar con IA
-      const prompt = `
-Día ${currentDayNumber} en Fuego en la Isla.
-Genera un capítulo emocionante y coherente para la historia, considerando votaciones y comentarios anteriores.
-`;
-      const text = await generarCapitulo(prompt, currentDayNumber);
+      // Si no existe capítulo, generar con IA vía backend
+      const prompt = `Día ${currentDayNumber} en Fuego en la Isla. Genera un capítulo emocionante basado en la historia actual.`;
+
+      const text = await generarCapituloBackend(prompt, currentDayNumber);
       chapterText.textContent = text;
     } else {
       chapterText.textContent = data.chapterText;
@@ -118,24 +116,31 @@ Genera un capítulo emocionante y coherente para la historia, considerando votac
 }
 
 /* =========================
-   FUNCION GENERAR CAPÍTULO IA
+   FUNCION GENERAR CAPÍTULO CON BACKEND
 ========================= */
-async function generarCapitulo(promptTexto, dayNumber) {
+async function generarCapituloBackend(prompt, dayNumber) {
   try {
-    const result = await generativeModel.generateContent([{ text: promptTexto }]);
-    const text = result.response.text();
+    // Aquí llamas a tu backend (Cloud Function o API) que genera el capítulo con OpenAI
+    const response = await fetch('https://tu-backend.com/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, dayNumber })
+    });
 
+    const data = await response.json();
+    const chapterText = data.chapterText || "No se pudo generar el capítulo.";
+
+    // Guardar capítulo en Firebase
     await set(ref(db, `days/${dayNumber}`), {
-      chapterText: text,
+      chapterText,
       createdAt: Date.now()
     });
 
-    console.log("Capítulo generado:", text);
-    return text;
+    return chapterText;
 
   } catch (error) {
     console.error("Error generando capítulo:", error);
-    return "No se pudo generar el capítulo del día.";
+    return "Error generando capítulo.";
   }
 }
 
@@ -175,7 +180,6 @@ sendCommentBtn.addEventListener('click', async () => {
 function loadVotesRealtime() {
   const votesRef = ref(db, `days/${currentDayNumber}/votes`);
   onValue(votesRef, (snapshot) => {
-    // Puedes mostrar resultados si quieres
     console.log("Votos del día:", snapshot.val());
   });
 }
