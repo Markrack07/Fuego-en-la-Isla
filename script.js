@@ -202,3 +202,15 @@ sidebarLinks.forEach(link => {
     if (!isNaN(day)) loadDay(day);
   });
 });
+
+function changeDay(newText) {
+  const chapter = document.querySelector(".chapter");
+
+  chapter.classList.add("fade-out");
+
+  setTimeout(() => {
+    chapter.querySelector("p").innerText = newText;
+    chapter.classList.remove("fade-out");
+    chapter.classList.add("fade-in");
+  }, 400);
+}
