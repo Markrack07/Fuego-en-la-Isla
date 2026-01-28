@@ -1,12 +1,12 @@
 // firebase-config.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+import { getDatabase } from "https://fuego-en-la-isla-default-rtdb.firebaseio.com/";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDGxLmQDmohUivV1XxIsLIWAvDATLRROgE",
   authDomain: "fuego-en-la-isla.firebaseapp.com",
-  databaseURL: "https://fuego-en-la-isla-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://fuego-en-la-isla-default-rtdb.firebaseio.com/",
   projectId: "fuego-en-la-isla",
   storageBucket: "fuego-en-la-isla.firebasestorage.app",
   messagingSenderId: "837575806373",
