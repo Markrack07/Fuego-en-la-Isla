@@ -214,3 +214,48 @@ function changeDay(newText) {
     chapter.classList.add("fade-in");
   }, 400);
 }
+
+function highlightProtagonists(text, names) {
+  let result = text;
+  names.forEach(name => {
+    const regex = new RegExp(`\\b${name}\\b`, "g");
+    result = result.replace(regex, `<span class="protagonist">${name}</span>`);
+  });
+  return result;
+}
+
+const modeBtn = document.getElementById("modeBtn");
+let fireMode = true;
+
+modeBtn.addEventListener("click", () => {
+  fireMode = !fireMode;
+  document.body.classList.toggle("fire", fireMode);
+  document.body.classList.toggle("night", !fireMode);
+  modeBtn.innerText = fireMode ? "🔥 Modo Fuego" : "🌴 Modo Noche";
+});
+
+function addInfluence(uid) {
+  const refInf = ref(db, `influence/${uid}`);
+  get(refInf).then(snap => {
+    const value = snap.exists() ? snap.val() : 0;
+    set(refInf, value + 1);
+  });
+}
+
+async function loadRanking() {
+  const snap = await get(ref(db, "influence"));
+  if (!snap.exists()) return;
+
+  const ranking = Object.entries(snap.val())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+
+  const container = document.getElementById("ranking");
+  container.innerHTML = "";
+
+  ranking.forEach(([uid, points], index) => {
+    const div = document.createElement("div");
+    div.innerHTML = `#${index+1} ${uid} — 🔥 ${points}`;
+    container.appendChild(div);
+  });
+}
