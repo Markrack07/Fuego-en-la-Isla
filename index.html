@@ -13,65 +13,97 @@
 </head>
 <body>
 
-  <!-- =========================
-       Pantalla de Login / Registro
-       ========================= -->
-  <div id="login-screen" class="screen">
-    <h1>🔥 Fuego en la Isla 🔥</h1>
-    <div class="login-form">
-      <input type="email" id="email" placeholder="Correo electrónico">
-      <input type="password" id="password" placeholder="Contraseña">
-      <input type="text" id="nickname" placeholder="Nickname (nuevo usuario)">
-      <div class="login-buttons">
-        <button id="signup-btn">Registrarse</button>
-        <button id="login-btn">Iniciar sesión</button>
+  <!-- Fondo animado 3D -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Temporadas</h2>
+    <div class="seasons">
+      <div class="season">
+        <h3>Temporada Enero</h3>
+        <ul>
+          <li><a href="#" data-day="1">Día 1</a></li>
+          <li><a href="#" data-day="2">Día 2</a></li>
+          <li><a href="#" data-day="3">Día 3</a></li>
+        </ul>
+      </div>
+      <div class="season">
+        <h3>Temporada Febrero</h3>
+        <ul>
+          <li><a href="#" data-day="4">Día 4</a></li>
+          <li><a href="#" data-day="5">Día 5</a></li>
+        </ul>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- =========================
-       Pantalla del Juego
-       ========================= -->
-  <div id="game-screen" class="screen" style="display:none;">
+  <!-- Contenido principal -->
+  <main class="main-content">
 
-    <!-- Menú de navegación -->
-    <nav class="menu">
-      <ul>
-        <li><a href="#chapter-section">Capítulo</a></li>
-        <li><a href="#votes-section">Votación</a></li>
-        <li><a href="#comments-section">Comentarios</a></li>
-      </ul>
-    </nav>
-
-    <!-- Día y Capítulo -->
-    <section id="chapter-section" class="card">
-      <h2 id="day-title">Día 1</h2>
-      <p id="chapter-text">Aquí aparecerá el capítulo del día.</p>
-    </section>
-
-    <!-- Votación -->
-    <section id="votes-section" class="card">
-      <h3>Votación del día</h3>
-      <div class="vote-buttons">
-        <button data-choice="1">Opción 1</button>
-        <button data-choice="2">Opción 2</button>
-        <button data-choice="3">Opción 3</button>
+    <!-- =========================
+         Pantalla de Login / Registro
+    ========================= -->
+    <div id="login-screen" class="screen">
+      <h1>🔥 Fuego en la Isla 🔥</h1>
+      <div class="login-form">
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <input type="text" id="nickname" placeholder="Nickname (nuevo usuario)">
+        <div class="login-buttons">
+          <button id="signup-btn">Registrarse</button>
+          <button id="login-btn">Iniciar sesión</button>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Comentarios -->
-    <section id="comments-section" class="card">
-      <h3>Comentarios</h3>
-      <div id="comments" class="comments-list"></div>
-      <div class="comment-input">
-        <input type="text" id="comment-input" placeholder="Escribe tu comentario">
-        <button id="send-comment">Enviar</button>
-      </div>
-    </section>
-  </div>
+    <!-- =========================
+         Pantalla del Juego
+    ========================= -->
+    <div id="game-screen" class="screen" style="display:none;">
+
+      <!-- Menú de navegación interno -->
+      <nav class="menu">
+        <ul>
+          <li><a href="#chapter-section">Capítulo</a></li>
+          <li><a href="#votes-section">Votación</a></li>
+          <li><a href="#comments-section">Comentarios</a></li>
+        </ul>
+      </nav>
+
+      <!-- Día y Capítulo -->
+      <section id="chapter-section" class="card">
+        <h2 id="day-title">Día 1</h2>
+        <p id="chapter-text">Aquí aparecerá el capítulo del día.</p>
+      </section>
+
+      <!-- Votación -->
+      <section id="votes-section" class="card">
+        <h3>Votación del día</h3>
+        <div class="vote-buttons">
+          <button data-choice="1">Opción 1</button>
+          <button data-choice="2">Opción 2</button>
+          <button data-choice="3">Opción 3</button>
+        </div>
+      </section>
+
+      <!-- Comentarios -->
+      <section id="comments-section" class="card">
+        <h3>Comentarios</h3>
+        <div id="comments" class="comments-list"></div>
+        <div class="comment-input">
+          <input type="text" id="comment-input" placeholder="Escribe tu comentario">
+          <button id="send-comment">Enviar</button>
+        </div>
+      </section>
+    </div>
+
+  </main>
 
   <!-- Script principal -->
   <script type="module" src="script.js"></script>
+  <!-- Script para fondo 3D -->
+  <script src="background3d.js" type="module"></script>
 
 </body>
 </html>
