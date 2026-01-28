@@ -5,85 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fuego en la Isla 🔥</title>
 
-  <!-- Fuente futurista -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- CSS futurista -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Firebase (v12 con módulos) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-    import { getDatabase } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDGxLmQDmohUivV1XxIsLIWAvDATLRROgE",
-      authDomain: "fuego-en-la-isla.firebaseapp.com",
-      databaseURL: "https://fuego-en-la-isla-default-rtdb.firebaseio.com",
-      projectId: "fuego-en-la-isla",
-      storageBucket: "fuego-en-la-isla.appspot.com",
-      messagingSenderId: "837575806373",
-      appId: "1:837575806373:web:d823ec3986cfee375cec4c"
-    };
-
-    // Inicializar Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getDatabase(app);
-
-    // Exportar para usar en script.js
-    window.firebaseAuth = auth;
-    window.firebaseDB = db;
-  </script>
 </head>
 <body>
 
-  <!-- =========================
-       Pantalla de Login / Registro
-       ========================= -->
-  <div id="login-screen" class="screen">
-    <h1>🔥 Fuego en la Isla 🔥</h1>
-    <input type="email" id="email" placeholder="Correo electrónico">
-    <input type="password" id="password" placeholder="Contraseña">
-    <input type="text" id="nickname" placeholder="Nickname (nuevo usuario)">
-    <div style="margin-top: 10px;">
-      <button id="signup-btn">Registrarse</button>
-      <button id="login-btn">Iniciar sesión</button>
+<div id="login-screen" class="screen">
+  <h1>🔥 Fuego en la Isla 🔥</h1>
+  <input type="email" id="email" placeholder="Correo electrónico">
+  <input type="password" id="password" placeholder="Contraseña">
+  <input type="text" id="nickname" placeholder="Nickname (nuevo usuario)">
+  <div style="margin-top: 10px;">
+    <button id="signup-btn">Registrarse</button>
+    <button id="login-btn">Iniciar sesión</button>
+  </div>
+</div>
+
+<div id="game-screen" class="screen" style="display:none;">
+  <h2 id="day-title">Día 1</h2>
+
+  <section id="chapter-section">
+    <p id="chapter-text">Aquí aparecerá el capítulo del día.</p>
+  </section>
+
+  <section id="votes-section">
+    <h3>Votación del día</h3>
+    <div class="vote-buttons">
+      <button data-choice="1">Opción 1</button>
+      <button data-choice="2">Opción 2</button>
+      <button data-choice="3">Opción 3</button>
     </div>
-  </div>
+  </section>
 
-  <!-- =========================
-       Pantalla del Juego
-       ========================= -->
-  <div id="game-screen" class="screen" style="display:none;">
-    <h2 id="day-title">Día 1</h2>
+  <section id="comments-section">
+    <h3>Comentarios</h3>
+    <div id="comments" class="comments-list"></div>
+    <div class="comment-input">
+      <input type="text" id="comment-input" placeholder="Escribe tu comentario">
+      <button id="send-comment">Enviar</button>
+    </div>
+  </section>
+</div>
 
-    <section id="chapter-section">
-      <p id="chapter-text">Aquí aparecerá el capítulo del día.</p>
-    </section>
-
-    <section id="votes-section">
-      <h3>Votación del día</h3>
-      <div class="vote-buttons">
-        <button data-choice="1">Opción 1</button>
-        <button data-choice="2">Opción 2</button>
-        <button data-choice="3">Opción 3</button>
-      </div>
-    </section>
-
-    <section id="comments-section">
-      <h3>Comentarios</h3>
-      <div id="comments" class="comments-list"></div>
-      <div class="comment-input">
-        <input type="text" id="comment-input" placeholder="Escribe tu comentario">
-        <button id="send-comment">Enviar</button>
-      </div>
-    </section>
-  </div>
-
-  <!-- Script principal -->
-  <script type="module" src="script.js"></script>
+<!-- Script principal -->
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
