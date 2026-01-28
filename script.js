@@ -24,6 +24,8 @@ const sendCommentBtn = document.getElementById('send-comment');
 
 const voteButtons = document.querySelectorAll('.vote-buttons button');
 
+const sidebarLinks = document.querySelectorAll('.sidebar a');
+
 /* =========================
    VARIABLES
 ========================= */
@@ -74,14 +76,22 @@ onAuthStateChanged(auth, user => {
     loginScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
 
-    loadChapter();
-    loadCommentsRealtime();
-    loadVotesRealtime();
+    loadDay(currentDayNumber);
   } else {
     loginScreen.style.display = 'flex';
     gameScreen.style.display = 'none';
   }
 });
+
+/* =========================
+   FUNCIONES DE CARGA DEL DÍA
+========================= */
+function loadDay(dayNumber){
+  currentDayNumber = dayNumber;
+  loadChapter();
+  loadCommentsRealtime();
+  loadVotesRealtime();
+}
 
 /* =========================
    CAPÍTULO DEL DÍA
@@ -175,5 +185,16 @@ voteButtons.forEach(btn => {
     const choice = parseInt(btn.getAttribute('data-choice'));
     await set(ref(db, `days/${currentDayNumber}/votes/${currentUser.uid}`), choice);
     alert("¡Voto registrado!");
+  });
+});
+
+/* =========================
+   NAVEGACIÓN SIDEBAR
+========================= */
+sidebarLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const day = parseInt(link.getAttribute('data-day'));
+    if (!isNaN(day)) loadDay(day);
   });
 });
