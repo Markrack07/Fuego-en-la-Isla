@@ -296,6 +296,85 @@ button {
 }
 
 /* ---------------------------- */
+/*           BOTONES            */
+/* ---------------------------- */
+button {
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+button:hover {
+  background: rgba(255,183,3,0.7);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Botones de votación */
+.vote-btn {
+  flex: 1 1 calc(33% - 10px);
+  margin: 5px 0;
+  background: rgba(255,255,255,0.15);
+}
+
+.vote-btn:hover {
+  background: rgba(255,183,3,0.6);
+}
+
+/* Botón enviar comentario */
+.send {
+  background: #ffb703;
+  color: #000;
+}
+
+.send:hover {
+  background: #ffd166;
+  transform: scale(1.05);
+}
+
+/* Toggle login/register */
+.toggleBtn {
+  flex: 1;
+  background: rgba(255,183,3,0.3);
+  color: #fff;
+  margin: 0 5px;
+}
+
+.toggleBtn:hover {
+  background: rgba(255,183,3,0.6);
+  transform: scale(1.05);
+}
+
+/* Botón modo fuego / noche */
+#modeBtn {
+  background: rgba(255,183,3,0.4);
+  color: #fff;
+}
+
+#modeBtn:hover {
+  background: rgba(255,183,3,0.7);
+  transform: scale(1.05);
+}
+
+/* Logout en account.html */
+#logoutBtn {
+  background: rgba(255,0,0,0.4);
+  color: #fff;
+}
+
+#logoutBtn:hover {
+  background: rgba(255,0,0,0.7);
+  transform: scale(1.05);
+}
+
+
+/* ---------------------------- */
 /*       RESPONSIVE             */
 /* ---------------------------- */
 @media (max-width: 768px) {
