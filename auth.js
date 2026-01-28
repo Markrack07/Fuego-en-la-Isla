@@ -1,86 +1,68 @@
-import { auth, db } from "./firebase-config.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+// 🔒 ELEMENTOS LOGIN
+const email = document.getElementById("email");
+const password = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
+const goRegister = document.getElementById("goRegister");
 
-// 🚨 Si no estamos en login.html, NO seguimos
-if (!emailInput || !passwordInput || !loginBtn || !registerBtn) {
+// 🔒 ELEMENTOS REGISTER
+const regEmail = document.getElementById("regEmail");
+const regPassword = document.getElementById("regPassword");
+const registerBtn = document.getElementById("registerBtn");
+const goLogin = document.getElementById("goLogin");
+
+// 🔒 CAJAS
+const loginBox = document.getElementById("loginBox");
+const registerBox = document.getElementById("registerBox");
+
+// 🚨 SI NO ESTAMOS EN LOGIN.HTML, SALIMOS
+if (!loginBtn) {
   console.warn("auth.js cargado fuera de login.html");
   return;
 }
 
-// Redirige al login si no hay usuario
-onAuthStateChanged(auth, user => {
-  const path = window.location.pathname;
+const auth = getAuth();
 
-  if (!user) {
-    // Si no está logueado y NO estamos ya en login.html → redirigir
-    if (!path.endsWith("login.html")) {
-      window.location.href = "login.html";
-    }
-  } else {
-    // Si está logueado y estamos en login.html → redirigir a index
-    if (path.endsWith("login.html")) {
-      window.location.href = "index.html";
-    }
+/* ---------- CAMBIAR ENTRE LOGIN / REGISTER ---------- */
+goRegister.onclick = () => {
+  loginBox.style.display = "none";
+  registerBox.style.display = "flex";
+};
+
+goLogin.onclick = () => {
+  registerBox.style.display = "none";
+  loginBox.style.display = "flex";
+};
+
+/* ---------- LOGIN ---------- */
+loginBtn.onclick = async () => {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    window.location.href = "index.html";
+  } catch (err) {
+    alert(err.message);
   }
-});
+};
 
-// LOGIN
-const loginBtn = document.getElementById("loginBtn");
-if (loginBtn) {
-  loginBtn.addEventListener("click", async () => {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPass").value;
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "index.html";
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-}
-
-// REGISTRO
-const registerBtn = document.getElementById("registerBtn");
-if (registerBtn) {
-  registerBtn.addEventListener("click", async () => {
-    const email = document.getElementById("regEmail").value;
-    const password = document.getElementById("regPass").value;
-    const nickname = document.getElementById("regNick").value;
-    const appear = document.getElementById("appear").checked;
-
-    if (!nickname) return alert("Introduce un nickname");
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const uid = userCredential.user.uid;
-
-      // Guardar usuario en Realtime Database
-      await set(ref(db, `users/${uid}`), {
-        nickname: nickname,
-        role: "participante",
-        appear: appear,
-        influence: 0
-      });
-
-      window.location.href = "index.html";
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-}
-
-// LOGOUT (para account.html)
-const logoutBtn = document.getElementById("logoutBtn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-    window.location.href = "login.html";
-  });
-}
+/* ---------- REGISTER ---------- */
+registerBtn.onclick = async () => {
+  try {
+    await createUserWithEmailAndPassword(
+      auth,
+      regEmail.value,
+      regPassword.value
+    );
+    window.location.href = "index.html";
+  } catch (err) {
+    alert(err.message);
+  }
+};
