@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Fuego en la Isla</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fire">
+
+  <main class="main" style="max-width: 400px; margin: 50px auto;">
+    <h1>👤 Login / Registro</h1>
+
+    <!-- Formulario Login -->
+    <section>
+      <h3>Iniciar sesión</h3>
+      <input type="email" id="loginEmail" placeholder="Correo electrónico">
+      <input type="password" id="loginPass" placeholder="Contraseña">
+      <button id="loginBtn">Iniciar sesión</button>
+    </section>
+
+    <hr style="margin:20px 0; border:1px solid #444;">
+
+    <!-- Formulario Registro -->
+    <section>
+      <h3>Registrarse</h3>
+      <input type="text" id="regNick" placeholder="Nickname">
+      <input type="email" id="regEmail" placeholder="Correo electrónico">
+      <input type="password" id="regPass" placeholder="Contraseña">
+      <label style="display:block; margin:10px 0;">
+        <input type="checkbox" id="appear"> Quiero aparecer en la historia
+      </label>
+      <button id="registerBtn">Registrarse</button>
+    </section>
+
+    <p style="margin-top:20px; font-size:0.9rem;">
+      <a href="index.html" style="color:#ffb703;">Volver al inicio</a>
+    </p>
+  </main>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="auth.js"></script>
+
+</body>
+</html>
