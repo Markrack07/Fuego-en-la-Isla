@@ -22,5 +22,5 @@ export const auth = getAuth(app);
 // 🔹 Realtime Database (URL IMPORTANTE)
 export const db = getDatabase(
   app,
-  "https://fuego-en-la-isla-default-rtdb.europe-west1.firebasedatabase.app/"
+  "https://fuego-en-la-isla-default-rtdb.firebaseio.com/"
 );
