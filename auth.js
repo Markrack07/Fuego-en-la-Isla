@@ -5,6 +5,13 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
+import {
+  getDatabase,
+  ref,
+  set
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+
+
 /* -----------------------------
    ELEMENTOS LOGIN / REGISTER
 ----------------------------- */
@@ -13,6 +20,9 @@ const password = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
 const goRegister = document.getElementById("goRegister");
 
+const nameInput = document.getElementById("name");
+const surnameInput = document.getElementById("surname");
+const usernameInput = document.getElementById("username");
 const regEmail = document.getElementById("regEmail");
 const regPassword = document.getElementById("regPassword");
 const registerBtn = document.getElementById("registerBtn");
@@ -68,16 +78,31 @@ if (loginBtn && registerBtn) {
     }
   };
 
-  registerBtn.onclick = async () => {
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        regEmail.value,
-        regPassword.value
-      );
-    } catch (err) {
-      alert(err.message);
-    }
-  };
+  const db = getDatabase();
 
-}
+registerBtn.onclick = async () => {
+  try {
+    const cred = await createUserWithEmailAndPassword(
+      auth,
+      regEmail.value,
+      regPassword.value
+    );
+
+    const uid = cred.user.uid;
+
+    await set(ref(db, "users/" + uid), {
+      name: nameInput.value,
+      surname: surnameInput.value,
+      username: usernameInput.value,
+      email: regEmail.value,
+      influence: 0,
+      role: "viewer",
+      createdAt: Date.now()
+    });
+
+    window.location.href = "index.html";
+
+  } catch (err) {
+    alert(err.message);
+  }
+};
